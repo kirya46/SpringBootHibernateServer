@@ -1,0 +1,65 @@
+group 'SpringBootExample'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName ="com.common.Main"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.6.RELEASE")
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+
+    compile group: 'org.json', name: 'json', version: '20090211'
+
+
+
+
+    //---------
+
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.4.0.RELEASE'
+//    compile 'org.hibernate:hibernate-core:4.3.6.Final'
+//    compile group: 'org.hibernate', name: 'hibernate-annotations', version: '4.3.6-Final'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.6.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.3.6.Final'
+
+
+
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+//    compile 'org.slf4j:slf4j-simple:1.7.7'
+    compile 'org.javassist:javassist:3.15.0-GA'
+    compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
+    compile 'commons-dbcp:commons-dbcp:1.4'
+}
