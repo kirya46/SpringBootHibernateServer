@@ -1,4 +1,4 @@
-package com.common.controllers;
+package com.common.controller;
 
 import com.common.dao.entity.Avatar;
 import com.common.service.impl.AvatarService;
@@ -23,12 +23,6 @@ public class AvatarController {
 
     @Autowired
     private AvatarService avatarService;
-
-
-    @RequestMapping(value = "/")
-    public String index() throws JSONException {
-        return "Greetings from Spring Boot!";
-    }
 
     @RequestMapping(value = "/user/add/{userId}")
     public ResponseEntity add(@PathVariable("userId") long id) {

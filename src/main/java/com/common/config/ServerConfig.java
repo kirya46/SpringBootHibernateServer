@@ -9,6 +9,7 @@ import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletConta
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -17,7 +18,7 @@ import java.net.UnknownHostException;
  * Created by Kirill Stoianov on 28/08/17.
  */
 @Configuration
-public class ServerConfig  {
+public class ServerConfig {
 
     private InetAddress host;
     private int port;
@@ -33,7 +34,7 @@ public class ServerConfig  {
     }
 
     @Bean
-    public EmbeddedServletContainerCustomizer containerCustomizer()  {
+    public EmbeddedServletContainerCustomizer containerCustomizer() {
         return new EmbeddedServletContainerCustomizer() {
             @Override
             public void customize(ConfigurableEmbeddedServletContainer container) {
@@ -42,6 +43,14 @@ public class ServerConfig  {
                 //container.setContextPath(); // localhost:8080/api/test/{your_rest_method}
             }
         };
+    }
+
+    @Bean
+    public InternalResourceViewResolver resourceViewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/jsp/");
+        resolver.setSuffix(".jsp");
+        return resolver;
     }
 
 
