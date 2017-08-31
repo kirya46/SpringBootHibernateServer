@@ -20,8 +20,8 @@
 
 
 
-        <!--<mapping class="com.common.model.Device"/>-->
-        <!--<mapping class="com.common.model.User"/>-->
+        <!--<mapping clacom.common.dao.modeloUDevicevice"/>-->
+        <!--<mapping clacom.common.dao.modeloAvatarUser"/>-->
 
     <!--</session-factory>-->
 <!--</hibernate-configuration>-->

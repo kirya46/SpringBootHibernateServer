@@ -1,29 +1,29 @@
-package com.common.model;
+package com.common.dao.entity;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
- * Created by Kirill Stoianov on 25/08/17.
+ * Created by Kirill Stoianov on 31/08/17.
  */
-
 @Entity
-@Table(name="\"User\"")
-public class User {
-
+@Table(name = "Purchase")
+public class Purchase {
 
     @Id
-    @Column(name="id")
-    private int id;
+    @Column(name="id", unique = true)
+    private long id;
 
     @Column(name = "name")
     private String name;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -37,7 +37,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Purchase{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
