@@ -8,25 +8,25 @@
     <title>Registration</title>
 </head>
 <body>
-<form:form id="regForm" modelAttribute="avatar" action="registerProcess" method="post" >
+<form:form id="regForm" modelAttribute="avatar" onsubmit="verify()" action="registerProcess" method="post">
     <table align="center">
 
         <tr>
             <td>
-                <form:label path="id">ID</form:label>
+                <form:label path="name">User name</form:label>
             </td>
             <td>
-                <form:password path="id" name="id" id="id" />
+                <form:price path="name" name="name" id="name"/>
             </td>
         </tr>
 
 
         <tr>
             <td>
-                <form:label path="name">Name</form:label>
+                <form:label path="price">Password</form:label>
             </td>
             <td>
-                <form:password path="name" name="name" id="name" />
+                <form:price path="price" name="price" id="price"/>
             </td>
         </tr>
 
@@ -37,16 +37,24 @@
             </td>
         </tr>
 
-        <%--SEPARATE ROW--%>
-        <tr></tr>
-
-
-        <tr>
-            <td></td>
-            <td><a href="home.jsp">Home</a>
-            </td>
-        </tr>
     </table>
 </form:form>
+
+<%--verify from data--%>
+<script type="text/javascript">
+    function verify() {
+        var name = document.getElementById("name").value;
+        var pass = document.getElementById("price").value;
+
+        if (name.length < 3 || pass.length < 3) {
+            alert("Wrong format of:\nUser name: " + name +"\nPassword: " + pass);
+            document.getElementById("regForm").setAttribute("action", "register");
+            elem.submit();
+            return false;
+        }
+        return true;
+    }
+</script>
+
 </body>
 </html>

@@ -1,9 +1,8 @@
 package com.common.dao.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -15,11 +14,15 @@ import java.io.Serializable;
 public class Avatar implements Serializable{
 
     @Id
-    @Column(name="id", unique = true)
+    @GenericGenerator(name="generator", strategy="increment")
+    @GeneratedValue(generator="generator")
     private long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
 
 //    @LazyCollection(LazyCollectionOption.FALSE)
 //    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -35,6 +38,7 @@ public class Avatar implements Serializable{
 //        this.devices = devices;
 //    }
 
+
     public long getId() {
         return id;
     }
@@ -43,21 +47,28 @@ public class Avatar implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public String toString() {
         return "Avatar{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-//                ", devices=" + devices +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

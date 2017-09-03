@@ -15,7 +15,7 @@ import java.util.UUID;
  * Created by Kirill Stoianov on 30/08/17.
  */
 @RestController
-public class TestController {
+public class PurchaseController {
 
     @Autowired
     private PurchaseDao dao;
@@ -30,4 +30,6 @@ public class TestController {
 
         return new ResponseEntity(HttpStatus.OK);
     }
+
+
 }

@@ -82,6 +82,7 @@ public abstract class GenericDaoImpl<E, PK extends Serializable>  implements Gen
         return this.findById(id)!= null;
     }
 
+
     protected abstract Class<E> getEntityClass();
 
     private DetachedCriteria createDetachedCriteria() {

@@ -4,6 +4,10 @@ import com.common.config.AppMainConfig;
 import com.common.config.HibernateConfig;
 import com.common.config.ServerConfig;
 import com.common.config.ServiceConfig;
+import com.common.dao.entity.Category;
+import com.common.dao.entity.Good;
+import com.common.service.impl.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -37,14 +41,15 @@ public class Application extends SpringBootServletInitializer {
 
         SpringApplication.run(Application.class, args);
 
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-        ctx.register(
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        context.register(
                 AppMainConfig.class,
                 HibernateConfig.class,
                 ServiceConfig.class,
                 ServerConfig.class
         );
-        ctx.refresh();
+        context.refresh();
     }
+
 
 }

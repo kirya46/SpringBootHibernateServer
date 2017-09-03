@@ -1,8 +1,12 @@
 package com.common.config;
 
+import com.common.controller.AppErrorController;
 import org.eclipse.jetty.server.HttpConnection;
 import org.eclipse.jetty.server.Server;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
+import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
@@ -26,7 +30,7 @@ public class ServerConfig {
     public ServerConfig() {
         try {
             this.host = InetAddress.getByName("localhost");
-//            this.host = InetAddress.getByName("192.168.0.102");
+//            this.host = InetAddress.getByName("192.168.0.101");
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
@@ -53,5 +57,12 @@ public class ServerConfig {
         return resolver;
     }
 
+    //START DEFAULT ERROR CONTROLLER
+    @Autowired(required=false)
+    private DefaultErrorAttributes errorAttributes;
+
+    @Bean
+    public AppErrorController appErrorController(){return new AppErrorController(errorAttributes);}
+    //END DEFAULT ERROR CONTROLLER
 
 }

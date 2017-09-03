@@ -2,7 +2,6 @@ package com.common.controller;
 
 import com.common.dao.entity.Avatar;
 import com.common.service.impl.AvatarService;
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class AvatarController {
 
         Avatar avatar = new Avatar();
         avatar.setId(id);
-        avatar.setName(UUID.randomUUID().toString());
+        avatar.setUsername(UUID.randomUUID().toString());
 
         //return bad request code if avatar exists
         if (this.avatarService.isExists(avatar.getId())){

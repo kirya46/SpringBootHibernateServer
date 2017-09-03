@@ -11,18 +11,18 @@
     <table align="center">
         <tr>
             <td>
-                <form:label path="username">Username: </form:label>
+                <form:label path="name">Username: </form:label>
             </td>
             <td>
-                <form:input path="username" name="username" id="username" />
+                <form:input path="name" name="name" id="name" />
             </td>
         </tr>
         <tr>
             <td>
-                <form:label path="password">Password:</form:label>
+                <form:label path="price">Password:</form:label>
             </td>
             <td>
-                <form:password path="password" name="password" id="password" />
+                <form:price path="price" name="price" id="price" />
             </td>
         </tr>
         <tr>
@@ -32,11 +32,7 @@
             </td>
         </tr>
         <tr></tr>
-        <tr>
-            <td></td>
-            <td><a href="home.jsp">Home</a>
-            </td>
-        </tr>
+
     </table>
 </form:form>
 <table align="center">

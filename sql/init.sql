@@ -1,0 +1,59 @@
+--legacy
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+
+DROP TABLE IF EXISTS id_generator;
+
+CREATE TABLE id_generator (
+  "sequence_next_hi_value"   BIGINT UNIQUE  NULL DEFAULT NULL,
+  "sequence_name" VARCHAR(50)    NULL DEFAULT NULL
+
+);
+--legacy
+
+DROP TABLE IF EXISTS Avatar;
+
+CREATE TABLE Avatar (
+  "id"   BIGINT UNIQUE  NULL DEFAULT NULL,
+  "name" VARCHAR(50)    NULL DEFAULT NULL,
+  "price" VARCHAR(50)    NULL DEFAULT NULL
+
+);
+
+DROP TABLE IF EXISTS ADevice;
+
+CREATE TABLE ADevice (
+  "id"   BIGINT UNIQUE  NULL DEFAULT NULL,
+  "userid" BIGINT NULL DEFAULT NULL,
+  "uuid" VARCHAR(50)    NULL DEFAULT NULL
+);
+
+DROP TABLE IF EXISTS Purchase;
+
+CREATE TABLE Purchase (
+  "id"   BIGINT UNIQUE  NULL DEFAULT NULL,
+  "name" VARCHAR(50)    NULL DEFAULT NULL
+);
+
+
+
+DROP TABLE IF EXISTS Category;
+
+CREATE TABLE Category(
+  "id"   BIGINT UNIQUE  NULL DEFAULT NULL,
+  "name" VARCHAR(50)    NULL DEFAULT NULL,
+  "cat_desc" TEXT  NULL DEFAULT NULL
+);
+
+
+DROP TABLE IF EXISTS Good;
+
+CREATE TABLE Good(
+  "id"   BIGINT UNIQUE  NULL DEFAULT NULL,
+  "name" VARCHAR(50)    NULL DEFAULT NULL,
+  "price" BIGINT  NULL DEFAULT NULL,
+  "category" bigint DEFAULT NULL,
+
+  FOREIGN KEY ("category") REFERENCES "category" ("id")
+
+);
