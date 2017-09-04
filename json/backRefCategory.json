@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Category some name",
+    "cat_desc": "Description"
+  },
+  {
+    "id": 2,
+    "name": "Category some name",
+    "cat_desc": "Description"
+  },
+  {
+    "id": 3,
+    "name": "Category some name",
+    "cat_desc": "Description"
+  },
+  {
+    "id": 4,
+    "name": "Category some name",
+    "cat_desc": "Description"
+  }
+]
+

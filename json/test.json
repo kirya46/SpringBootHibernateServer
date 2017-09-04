@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "Category some name",
+    "cat_desc": "Description",
+    "goods": [
+      {
+        "id": 3,
+        "name": "XGood",
+        "price": 11.0
+      },
+      {
+        "id": 1,
+        "name": "Samsung",
+        "price": 100.0
+      },
+      {
+        "id": 2,
+        "name": "IPhone 4s",
+        "price": 101.0
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Category some name",
+    "cat_desc": "Description",
+    "goods": [
+      {
+        "id": 4,
+        "name": "XGood",
+        "price": 11.0
+      },
+      {
+        "id": 5,
+        "name": "IPhone 4s",
+        "price": 101.0
+      },
+      {
+        "id": 6,
+        "name": "Samsung",
+        "price": 100.0
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Category some name",
+    "cat_desc": "Description",
+    "goods": [
+      {
+        "id": 8,
+        "name": "XGood",
+        "price": 11.0
+      },
+      {
+        "id": 9,
+        "name": "IPhone 4s",
+        "price": 101.0
+      },
+      {
+        "id": 7,
+        "name": "Samsung",
+        "price": 100.0
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Category some name",
+    "cat_desc": "Description",
+    "goods": [
+      {
+        "id": 12,
+        "name": "IPhone 4s",
+        "price": 101.0
+      },
+      {
+        "id": 10,
+        "name": "Samsung",
+        "price": 100.0
+      },
+      {
+        "id": 11,
+        "name": "XGood",
+        "price": 11.0
+      }
+    ]
+  }
+]

@@ -55,4 +55,7 @@ public class GoodController {
         final List<Good> all = this.service.findAll();
         return new ResponseEntity<>(all, HttpStatus.OK);
     }
+
+
+    // TODO: 04/09/17 update and chek in following table is changes applied
 }

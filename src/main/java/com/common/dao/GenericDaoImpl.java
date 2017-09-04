@@ -21,6 +21,18 @@ public abstract class GenericDaoImpl<E, PK extends Serializable>  implements Gen
 
     @Override
     @Transactional
+    public void persist(E persistentEntity){
+        this.hibernateTemplate.persist(persistentEntity);
+    }
+
+    @Override
+    @Transactional
+    public E load(PK primaryKey) {
+        return this.hibernateTemplate.load(getEntityClass(),primaryKey);
+    }
+
+    @Override
+    @Transactional
     @SuppressWarnings("unchecked")
     public PK save(E newInstance) {
         return (PK) this.hibernateTemplate.save(newInstance);

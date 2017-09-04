@@ -1,11 +1,20 @@
 package com.common.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by Kirill Stoianov on 25/08/17.
@@ -27,7 +36,9 @@ public class Category implements Serializable{
     @Column(name = "cat_desc")
     private String cat_desc;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    @OneToMany(mappedBy = "category",fetch = FetchType.EAGER,cascade = CascadeType.ALL)//mappedBy for fix child ids duplicate
+    @Fetch(FetchMode.SELECT)//for skip entity duplicates on findAll query
+    @JsonManagedReference
     private Set<Good> goods = new HashSet<>();
 
     public long getId() {
@@ -62,16 +73,18 @@ public class Category implements Serializable{
         this.goods = goods;
     }
 
-    public void addGood(Good good){
+    public void bindWith(Good good){
         this.goods.add(good);
+        good.setCategory(this);
     }
     @Override
     public String toString() {
+        Collection<Long> list= goods.stream().map(Good::getId).collect(Collectors.toList());
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", cat_desc='" + cat_desc + '\'' +
-                ", goods=" + goods +
+                ", goods=" + list +
                 '}';
     }
 }

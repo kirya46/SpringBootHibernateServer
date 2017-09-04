@@ -1,14 +1,10 @@
 package com.common.dao.entity;
 
-import org.hibernate.annotations.*;
-import org.hibernate.annotations.CascadeType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Kirill Stoianov on 25/08/17.
@@ -29,8 +25,9 @@ public class Good implements Serializable{
     @Column(name = "price")
     private double price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", nullable = false,insertable = false,updatable = false)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "category")
+    @JsonBackReference
     private Category category;
 
     public long getId() {
