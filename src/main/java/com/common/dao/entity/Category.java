@@ -1,25 +1,21 @@
 package com.common.dao.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
  * Created by Kirill Stoianov on 25/08/17.
  */
-
 @Entity
 @Table(name="Category")
 public class Category implements Serializable{

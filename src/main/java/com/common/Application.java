@@ -4,31 +4,26 @@ import com.common.config.AppMainConfig;
 import com.common.config.HibernateConfig;
 import com.common.config.ServerConfig;
 import com.common.config.ServiceConfig;
-import com.common.dao.entity.Category;
-import com.common.dao.entity.Good;
-import com.common.service.impl.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * Created by Kirill Stoianov on 25/08/17.
  */
 
+//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @SpringBootApplication
-@ComponentScan
-/*
- *   NOTE: In Spring Boot + Spring Data JPA application, to support the JSR310 java.time.* APIs,
+/*   NOTE: In Spring Boot + Spring Data JPA application, to support the JSR310 java.time.* APIs,
  *   we need to register this Jsr310JpaConverters manually.
  */
-@EntityScan(basePackageClasses = {Application.class, Jsr310JpaConverters.class})//for jsr310 java 8 java.time.*
+@EntityScan(
+        basePackages = {"com.common.dao"},
+        basePackageClasses = {Application.class, Jsr310JpaConverters.class})//for jsr310 java 8 java.time.*
 public class Application extends SpringBootServletInitializer {
 
     @Override
@@ -48,6 +43,7 @@ public class Application extends SpringBootServletInitializer {
                 ServiceConfig.class,
                 ServerConfig.class
         );
+        
         context.refresh();
     }
 

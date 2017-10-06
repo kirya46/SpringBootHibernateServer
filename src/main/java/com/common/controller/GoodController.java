@@ -1,6 +1,9 @@
 package com.common.controller;
 
+import com.common.dao.GenericDaoImpl;
+import com.common.dao.entity.Category;
 import com.common.dao.entity.Good;
+import com.common.service.impl.CategoryService;
 import com.common.service.impl.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,10 +23,14 @@ public class GoodController {
     @Autowired
     private GoodService service;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @RequestMapping(value = "/good/add",method = RequestMethod.POST)
     public ResponseEntity<HashMap<String,Long>> addGood(
             @RequestHeader(name = "name")String name,
-            @RequestHeader(name = "price") double price
+            @RequestHeader(name = "price") double price,
+            @RequestHeader(name = "categoryId") long categoryId
     ){
         System.out.println("addGood() called with: name = [" + name + "], price = [" + price + "]");
         Good good = new Good();
@@ -31,11 +38,19 @@ public class GoodController {
         good.setPrice(price);
 
         //get id of created object
-        final Long id = this.service.save(good);
+        final Long goodId = this.service.save(good);
 
         //prepare body
         final HashMap<String, Long> body= new HashMap<>();
-        body.put("id",id);
+        body.put(GenericDaoImpl.ID_COLUMN_NAME,goodId);
+
+
+        if (categoryId!=0){
+            final Category category = this.categoryService.findById(categoryId);
+            final Good persistentGood = this.service.findById(goodId);
+            category.bindWith(persistentGood);
+            this.categoryService.saveOrUpdate(category);
+        }
 
         return new ResponseEntity<>(body,HttpStatus.OK);
     }
@@ -57,5 +72,9 @@ public class GoodController {
     }
 
 
-    // TODO: 04/09/17 update and chek in following table is changes applied
+    @RequestMapping(value = "/good/load/{id}")
+    public ResponseEntity<Good> loadById(@PathVariable(name = "id")long id){
+        final Good good = service.findById(id);
+        return new ResponseEntity<Good>(good,HttpStatus.OK);
+    }
 }

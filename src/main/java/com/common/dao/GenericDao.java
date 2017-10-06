@@ -14,7 +14,6 @@ public interface GenericDao<E,PK  extends Serializable> {
     void delete(E persistentObject);
     void delete(PK primaryKey);
     E findById(PK primaryKey);
-    E load(PK primaryKey);
     List<E> findAll();
     List<E> findAllByProperty(String propertyName, Object value);
     boolean isExists(PK primaryKey);

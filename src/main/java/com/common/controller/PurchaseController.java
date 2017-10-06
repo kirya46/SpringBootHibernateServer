@@ -2,6 +2,7 @@ package com.common.controller;
 
 import com.common.dao.entity.Purchase;
 import com.common.dao.impl.PurchaseDao;
+import com.common.service.impl.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class PurchaseController {
 
     @Autowired
-    private PurchaseDao dao;
+    private PurchaseService dao;
 
     @RequestMapping(value = "/purchase/add/{id}")
     private ResponseEntity addDevice(@PathVariable(name = "id") long id){

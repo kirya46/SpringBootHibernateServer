@@ -1,6 +1,5 @@
 package com.common.dao;
 
-import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +13,17 @@ import java.util.List;
  * Created by Kirill Stoianov on 30/08/17.
  */
 @Transactional
-public abstract class GenericDaoImpl<E, PK extends Serializable>  implements GenericDao<E, PK>  {
+public abstract class GenericDaoImpl<E, PK extends Serializable> implements GenericDao<E, PK> {
+
+    public static final String ID_COLUMN_NAME = "id";
 
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
     @Override
     @Transactional
-    public void persist(E persistentEntity){
+    public void persist(E persistentEntity) {
         this.hibernateTemplate.persist(persistentEntity);
-    }
-
-    @Override
-    @Transactional
-    public E load(PK primaryKey) {
-        return this.hibernateTemplate.load(getEntityClass(),primaryKey);
     }
 
     @Override
@@ -86,12 +81,12 @@ public abstract class GenericDaoImpl<E, PK extends Serializable>  implements Gen
     @Override
     public void delete(PK id) {
         final E entity = this.findById(id);
-        if (entity!=null)this.delete(entity);
+        if (entity != null) this.delete(entity);
     }
 
     @Override
     public boolean isExists(PK id) {
-        return this.findById(id)!= null;
+        return this.findById(id) != null;
     }
 
 

@@ -7,6 +7,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -25,23 +26,34 @@ repositories {
     mavenCentral()
 }
 
+// Include dependent libraries in archive.
 jar {
-    baseName = 'gs-spring-boot'
-    version =  '0.1.0'
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
+//    Spring
+    testCompile("org.springframework.boot:spring-boot-starter-test")
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
     compile("org.springframework.boot:spring-boot-starter-jetty")
     compile("org.springframework.boot:spring-boot-starter-actuator")
 
-    testCompile("org.springframework.boot:spring-boot-starter-test")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.4.0.RELEASE'
 
-//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '1.4.0.RELEASE'
+
+//    Hibernate
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.6.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.3.6.Final'
 
 
     //JSON
@@ -52,18 +64,11 @@ dependencies {
 
 
 
-    //---------
-
-
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.4.0.RELEASE'
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.6.Final'
-    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.3.6.Final'
-
-
-
     compile 'javax.servlet:javax.servlet-api:3.1.0'
 //    compile 'org.slf4j:slf4j-simple:1.7.7'
     compile 'org.javassist:javassist:3.15.0-GA'
+
+    //Postgres driver
     compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
     compile 'commons-dbcp:commons-dbcp:1.4'
 
